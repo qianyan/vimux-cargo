@@ -2,6 +2,7 @@ command! CargoRun :call CargoRun()
 command! CargoTestAll :call CargoTestAll()
 command! CargoUnitTestCurrentFile :call CargoUnitTestCurrentFile()
 command! CargoUnitTestFocused :call CargoUnitTestFocused()
+command! CargoBuild :call CargoBuild()
 
 function! ShellCommandSeperator()
   if empty(matchstr($SHELL, 'fish'))
@@ -12,6 +13,10 @@ function! ShellCommandSeperator()
 endfunction
 
 let s:separator = ShellCommandSeperator()
+
+function! CargoBuild()
+  call VimuxRunCommand("clear " . s:separator . " cargo build")
+endfunction
 
 function! CargoRun()
   let args = input('arguments: ')
